@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mémoire M1 – Optimisation de l’analyse vidéo en athlétisme</title>
+    <meta
+      name="description"
+      content="Mémoire de recherche M1 : développement et évaluation de l’outil Méta-vidéo pour l’analyse vidéo des performances en course de haies et marche athlétique."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <span class="brand-name">Raphaël Peus</span>
+          <span class="brand-tagline">Data analyst / Data scientist</span>
+        </div>
+        <nav class="main-nav">
+          <a href="index.html#projects">← Retour aux projets</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero project-hero">
+        <div class="container">
+          <p class="hero-kicker">Mémoire de recherche M1</p>
+          <h1>Optimisation de l’analyse vidéo pour l’amélioration des performances en course de haies</h1>
+          <p class="section-intro">
+            Application et évaluation de l’outil Méta-vidéo – Développement d’un outil d’analyse vidéo
+            pour la Fédération Française d’Athlétisme et proposition de méthodologie pour évaluer son
+            impact sur les performances des athlètes.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container project-layout">
+          <div class="project-main">
+            <h2 class="section-title">Contexte & objectifs</h2>
+            <p>
+              Ce mémoire de recherche a été réalisé dans le cadre d’un <strong>stage à la Fédération
+              Française d’Athlétisme (FFA)</strong> d’avril à juin 2024. L’objectif principal était de
+              <strong>développer et adapter l’outil Méta-vidéo</strong> pour répondre aux besoins de la
+              cellule d’optimisation de la performance de la fédération et des entraîneurs, afin qu’ils
+              puissent l’utiliser de manière fonctionnelle pour chaque discipline demandée.
+            </p>
+            <p>
+              La Fédération Française d’Athlétisme était encore aux prémices de l’analyse vidéo en
+              compétition et utilisait jusqu’alors <strong>Kinovea</strong>, un logiciel d’analyse vidéo
+              assez simple. Le nouvel outil <strong>Méta-vidéo</strong>, développé et mis à disposition
+              des fédérations, permet de baliser tous les paramètres souhaités à partir des vidéos et
+              représente un sujet d’étude particulièrement intéressant car il n’a encore fait l’objet
+              d’aucune recherche.
+            </p>
+            <p>
+              Les objectifs du stage étaient : (1) se familiariser avec l’application Méta-vidéo en
+              comprenant son fonctionnement et ses limites, (2) développer et adapter cette application
+              pour les disciplines de l’athlétisme (110 m, 400 m haies, marche athlétique), et (3)
+              automatiser l’extraction des valeurs des paramètres souhaités pour qu’ils soient
+              rapidement utilisables.
+            </p>
+
+            <h2 class="section-title">Revue de littérature</h2>
+            <p>
+              L’analyse vidéo dans le sport a connu une évolution spectaculaire, passant de méthodes
+              manuelles laborieuses à des systèmes automatisés sophistiqués. Les premières méthodes
+              reposaient sur des photographies séquentielles et des observations subjectives, tandis que
+              les avancées en <strong>vision par ordinateur</strong> et en <strong>apprentissage
+              automatique</strong> ont permis de développer des systèmes sans marqueur, offrant une
+              analyse plus naturelle et précise des mouvements.
+            </p>
+            <p>
+              Les techniques de vision par ordinateur, basées sur les réseaux de neurones convolutifs
+              (CNN), les réseaux de neurones récurrents (RNN) et les réseaux de mémoire à long terme
+              (LSTM), permettent une analyse plus précise et exhaustive des performances sportives grâce
+              à la classification automatique des actions directement à partir des images ou de
+              séquences vidéo. Cependant, l’athlétisme n’est pas parmi les sports les plus étudiés en
+              matière de vision par ordinateur, et les systèmes existants restent encore très imparfaits.
+            </p>
+            <p>
+              Les méthodes d’analyse de mouvement basées sur la vision par ordinateur ont considérablement
+              évolué récemment, permettant à la recherche biomécanique de fournir des informations
+              significatives. Les développements en vision par ordinateur ont suscité un intérêt croissant
+              pour l’<strong>analyse du mouvement sans marqueurs</strong> et ses applications possibles,
+              bien que la précision exacte de ces systèmes et leur efficacité dans des environnements de
+              terrain restent à déterminer.
+            </p>
+
+            <h2 class="section-title">Problématique</h2>
+            <p>
+              L’analyse de la performance sportive, et plus spécifiquement l’analyse vidéo et du mouvement,
+              offre une précision accrue et un gain de temps considérable, des éléments essentiels pour
+              améliorer les performances sportives. Dans un contexte où l’analyse de données est centrale
+              pour optimiser les résultats, il est crucial que les fédérations sportives adoptent
+              progressivement ces innovations.
+            </p>
+            <p>
+              Actuellement, dans les fédérations françaises, et notamment dans le domaine de
+              l’athlétisme, l’utilisation de l’analyse vidéo pour évaluer les performances en compétition
+              en est encore qu’à ses débuts. La fédération en est encore à la numérisation manuelle pour
+              les compétitions.
+            </p>
+            <p>
+              Les questions de recherche posées sont : <strong>"Les outils technologiques comme Méta-vidéo
+              permettent-ils d’améliorer les performances cinématiques des athlètes de haut niveau en
+              course de haies et en marche athlétique ? L’implémentation de cet outil peut-elle optimiser
+              l’analyse des performances pour les athlètes ?"</strong>
+            </p>
+
+            <h2 class="section-title">Travaux réalisés</h2>
+            <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.75rem; color: var(--accent);">
+              Évaluation de l’état actuel et prise en main de Kinovea
+            </h3>
+            <p>
+              Lors de l’arrivée à la fédération, j’ai dû évaluer l’état de l’analyse vidéo dans
+              l’athlétisme, en particulier dans les disciplines de haies. J’ai pris en main le logiciel
+              <strong>Kinovea</strong>, en travaillant avec des vidéos de courses de haies et en observant
+              les paramètres d’intérêt cinématiques préalablement établis par les entraîneurs.
+            </p>
+            <p>
+              J’ai constaté les limites de la numérisation manuelle : noter manuellement chaque valeur en
+              procédant image par image demande beaucoup de temps. J’ai également relevé les problèmes
+              spécifiques à l’analyse vidéo des haies, notamment la nécessité de synchroniser plusieurs
+              caméras avec différents points de vue pour assurer un chronométrage précis.
+            </p>
+
+            <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.75rem; color: var(--accent);">
+              Développement et adaptation de Méta-vidéo
+            </h3>
+            <p>
+              J’ai ensuite pris en main <strong>Méta-vidéo</strong> avec les mêmes vidéos pour en comprendre
+              le fonctionnement. Après une réunion avec <strong>Bertrand Valcin</strong>, entraîneur national
+              d’athlétisme et ancien entraîneur de Kevin Mayer, et <strong>Yohann Morillo</strong>, l’un
+              des développeurs de l’application, nous avons discuté des différentes demandes spécifiques
+              aux disciplines d’athlétisme et des fonctionnalités souhaitées.
+            </p>
+            <p>
+              Méta-vidéo est un outil d’analyse vidéo et de tagging, exclusivement disponible pour les
+              fédérations. Chaque fédération dispose de son propre compte pour ajuster les différents
+              paramètres spécifiques à chaque sport ou discipline. J’ai développé les panneaux de tagging
+              pour :
+            </p>
+            <ul class="edu-list">
+              <li>
+                <strong>110 et 60 m haies</strong> : temps à l’impulsion et à la réception de chaque haie,
+                haies touchés (desquels découleront le temps de vol, le temps de course et l’intervalle
+                entre chaque haies).
+              </li>
+              <li>
+                <strong>400 m haie</strong> : temps à la réception de chaque haie, jambe d’attaque à chaque
+                haies, nombres de foulées entre chaque haie.
+              </li>
+              <li>
+                <strong>Marche athlétique</strong> : en cours de développement en essayant le tagging en
+                direct. Utilisation d’un flux vidéo en live, calcul automatique des paramètres d’intérêt.
+                Possibilité de revenir en arrière sur le flux live si un tag a été oublié.
+              </li>
+            </ul>
+            <p>
+              J’ai également saisi un grand nombre d’athlètes, de lieux et d’événements dans la base de
+              données de l’application pour que l’entraîneur n’ait pas à les ajouter individuellement,
+              rendant ainsi le processus plus simple.
+            </p>
+
+            <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.75rem; color: var(--accent);">
+              Automatisation de l’extraction de données
+            </h3>
+            <p>
+              Une fois la session de tagging terminée, les données extraites directement de l’application
+              se présentent sous la forme de plusieurs classeurs Excel avec des timecodes plutôt que des
+              valeurs en secondes ou millisecondes, et les tags d’impulsion et de réception sont
+              simplement notés par un "1" ou un "null".
+            </p>
+            <p>
+              C’est pourquoi il a été nécessaire de créer un <strong>code en R</strong> permettant de
+              formater un fichier Excel clair avec plusieurs feuilles, ne contenant que les données
+              nécessaires pour l’entraîneur et l’analyste. Cette phase permet donc d’automatiser
+              l’extraction des données auparavant manuelle et permet aux entraîneurs de visualiser
+              directement les données après la course.
+            </p>
+            <p>
+              Ces données sont directement redirigées vers l’<strong>application Shiny de la fédération</strong>,
+              disponible pour toute la cellule performance. Cette application présente toutes les données
+              de chaque joueur, leurs progrès, leurs meilleures performances, leurs performances maximales
+              dans chaque paramètre de la discipline, ainsi que les points nécessaires pour se qualifier
+              aux Jeux Olympiques.
+            </p>
+
+            <h2 class="section-title">Proposition de méthodologie pour recherches futures</h2>
+            <p>
+              Une fois l’outil développé et mis en place dans la fédération d’athlétisme, notamment dans
+              les sections de 60 m, 110 m et 400 m haies, des recherches répondant aux problématiques
+              précédentes peuvent voir le jour. Pour répondre aux questions de recherche posées, nous
+              adopterons une approche expérimentale avec des groupes contrôlés.
+            </p>
+            <p>
+              <strong>Deux études expérimentales</strong> seront menées pour évaluer l’impact de Méta-vidéo :
+            </p>
+            <ul class="edu-list">
+              <li>
+                <strong>Étude 1 – Application de terrain</strong> : Comparer les performances des athlètes
+                avec et sans l’utilisation de l’outil Méta-vidéo. 40 athlètes français évoluant dans les
+                disciplines du 60 m, 110 m et 400 m haies, répartis en deux groupes de 20. Les indicateurs
+                de performance incluront le résultat moyen des courses, les temps de "take-off" et
+                "touchdown" à chaque haie, les temps de vol, les temps de course et les temps d’intervalles
+                entre les haies.
+              </li>
+              <li>
+                <strong>Étude 2 – Usage métier</strong> : Comparer le temps passé sur l’outil d’analyse
+                vidéo entre Kinovea et Méta-vidéo. 20 entraîneurs/analystes, répartis en deux groupes de
+                10. L’indicateur de performance sera le temps moyen passé sur les logiciels d’analyse vidéo,
+                avec une étude qualitative à partir d’un questionnaire.
+              </li>
+            </ul>
+            <p>
+              Les deux études se dérouleront sur une période de six mois. Pour chaque étude, nous
+              commencerons par un test de Levene afin de vérifier l’homogénéité des variances entre les
+              groupes. Si les variances sont similaires, un t-test de Student sera utilisé. Si les variances
+              sont inégales, le test de Welch sera utilisé. En complément, une analyse qualitative sera
+              réalisée pour identifier les perceptions des utilisateurs.
+            </p>
+
+            <h2 class="section-title">Conclusion et perspectives</h2>
+            <p>
+              Les résultats attendus de cette étude sont multiples. Nous prévoyons de démontrer que
+              l’utilisation d’outils d’analyse vidéo, tel que Méta-vidéo, peut significativement améliorer
+              les performances des athlètes en optimisant leur technique et en offrant un retour
+              d’information précis et exploitable.
+            </p>
+            <p>
+              Sur le plan scientifique, cette étude ouvre des perspectives intéressantes pour la recherche
+              en sciences du sport et en technologies de l’information appliquées à l’entraînement sportif.
+              Les données recueillies pourront alimenter de futures recherches sur l’efficacité des
+              différentes technologies d’analyse vidéo et leur impact sur les performances athlétiques.
+            </p>
+            <p>
+              Pour une recherche future, l’idée serait de recueillir l’ensemble des données recueillies dans
+              le 100 m haie et de déterminer, à la manière d’Iwasaki et al (2022a), les temps de vols et
+              les temps de courses optimaux.
+            </p>
+
+            <h2 class="section-title">Compétences mises en avant</h2>
+            <ul class="edu-list">
+              <li>Développement et adaptation d’outils d’analyse vidéo pour le sport de haut niveau.</li>
+              <li>Automatisation de l’extraction et du traitement de données (R, Excel).</li>
+              <li>Rédaction scientifique et revue de littérature approfondie.</li>
+              <li>Conception de méthodologie de recherche expérimentale.</li>
+              <li>Collaboration avec des entraîneurs et responsables performance.</li>
+              <li>Intégration de données dans des applications de visualisation (R Shiny).</li>
+            </ul>
+          </div>
+
+          <aside class="project-side">
+            <div class="project-side-card">
+              <h3>Détails du mémoire</h3>
+              <p class="project-side-meta">Année : 2023‑2024 (M1)</p>
+              <p class="project-side-meta">Organisme : Fédération Française d’Athlétisme</p>
+              <p class="project-side-meta">Période : Avril – Juin 2024</p>
+              <p class="project-side-meta">Type : Stage + Mémoire de recherche</p>
+            </div>
+            <div class="project-side-card">
+              <h3>Télécharger le mémoire</h3>
+              <p class="project-side-meta">
+                Version complète du mémoire de recherche M1 (PDF).
+              </p>
+              <p class="project-side-meta">
+                <a
+                  href="Memoire Raphael Peus M1.pdf"
+                  download
+                  class="btn btn-outline project-btn"
+                  >Télécharger le PDF</a
+                >
+              </p>
+            </div>
+            <div class="project-side-card">
+              <h3>Mots‑clés</h3>
+              <ul class="project-tags">
+                <li>Analyse vidéo</li>
+                <li>Performance sportive</li>
+                <li>Méta-vidéo</li>
+                <li>Vision par ordinateur</li>
+                <li>Athlétisme</li>
+                <li>Automatisation</li>
+                <li>R</li>
+                <li>R Shiny</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Raphaël Peus – Data analyst / Data scientist</p>
+      </div>
+      <script>
+        const yearSpan = document.getElementById("year");
+        if (yearSpan) {
+          yearSpan.textContent = new Date().getFullYear();
+        }
+      </script>
+    </footer>
+  </body>
+</html>
+

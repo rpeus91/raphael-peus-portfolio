@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plan d’expérience – Modélisation de données complexe</title>
+    <meta
+      name="description"
+      content="Projet de plan d’expérience pour la modélisation de données complexes : choix des facteurs, construction du design expérimental et analyse statistique."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <span class="brand-name">Raphaël Peus</span>
+          <span class="brand-tagline">Data analyst / Data scientist</span>
+        </div>
+        <nav class="main-nav">
+          <a href="index.html#projects">← Retour aux projets</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero project-hero">
+        <div class="container">
+          <p class="hero-kicker">Projet – Plan d’expérience</p>
+          <h1>Football&nbsp;: vitesse d’exécution entre contrôle et passe</h1>
+          <p class="section-intro">
+            Projet réalisé dans le cadre d’un cours de statistiques appliquées pour
+            concevoir et analyser un <strong>plan d’expérience</strong> étudiant les facteurs
+            qui influencent le temps d’exécution entre un contrôle et une passe en football.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container project-layout">
+          <div class="project-main">
+            <h2 class="section-title">Contexte & objectifs</h2>
+            <p>
+              Dans le football moderne, la capacité d’un joueur à enchaîner rapidement
+              <strong>contrôle&nbsp;+&nbsp;passe</strong> est essentielle pour conserver le
+              ballon et créer des décalages. Ce projet porte sur une situation de jeu
+              spécifique où deux joueurs réalisent une série d’enchaînements contrôle/passe,
+              afin de <strong>quantifier l’effet de différents facteurs techniques et
+              contextuels sur le temps d’exécution</strong>.
+            </p>
+            <p>
+              La problématique formulée est&nbsp;: <em>«&nbsp;Quel facteur influe sur la
+              vitesse d’exécution entre le contrôle et la passe en football&nbsp;?&nbsp;»</em>
+              avec des hypothèses sur la <strong>surface de jeu</strong> (herbe vs synthétique),
+              la <strong>vitesse et la distance de la passe</strong> (rapide/lente,
+              proche/loin) et la <strong>latéralité du pied</strong> utilisé pour réaliser
+              l’enchaînement.
+            </p>
+
+            <h2 class="section-title">Protocole expérimental</h2>
+            <ul class="edu-list">
+              <li>
+                Deux joueurs de profils distincts (milieu et défenseur) réalisent des
+                enchaînements contrôle/passe sur terrain en herbe et sur terrain synthétique.
+              </li>
+              <li>
+                Mise en place d’un <strong>plan fractionnaire 2<sup>7‑2</sup></strong> pour
+                étudier sept facteurs binaires (joueur, type de surface, type de crampon,
+                pied d’appui, présence de rebond, vitesse de la passe, distance/zone de
+                précision) sous contrainte de temps.
+              </li>
+              <li>
+                Les essais sont filmés sur le terrain puis les vidéos sont découpées afin
+                d’extraire précisément le <strong>temps entre le premier contrôle et la
+                passe</strong>, utilisé comme variable de réponse.
+              </li>
+              <li>
+                Les analyses statistiques sont réalisées sous <strong>R</strong> (modèle
+                linéaire, ANOVA, tests F et t) avec visualisation des effets principaux.
+              </li>
+            </ul>
+
+            <h2 class="section-title">Résultats principaux</h2>
+            <ul class="edu-list">
+              <li>
+                Le modèle final met en évidence trois facteurs significatifs sur le temps de
+                l’enchaînement&nbsp;: <strong>l’athlète</strong>, la
+                <strong>surface de jeu</strong> et la <strong>zone de précision de la
+                passe</strong>. Aucune interaction n’est ressortie significative avec le
+                plan testé.
+              </li>
+              <li>
+                Le jeu est globalement <strong>plus lent sur terrain synthétique</strong> que
+                sur herbe, ce qui montre l’influence de la surface sur la vitesse
+                d’exécution.
+              </li>
+              <li>
+                De manière générale, le milieu de terrain réalise l’enchaînement
+                contrôle/passe plus rapidement que le défenseur, et les résultats sont
+                meilleurs lorsque l’ensemble de l’enchaînement est réalisé
+                <strong>avec le même pied</strong>.
+              </li>
+              <li>
+                Les résultats suggèrent que des <strong>passes légèrement plus lentes et
+                plus proches</strong> peuvent favoriser un meilleur compromis entre rapidité
+                et précision.
+              </li>
+            </ul>
+
+            <h2 class="section-title">Enseignements & limites</h2>
+            <ul class="edu-list">
+              <li>
+                Le projet illustre l’intérêt des <strong>plans d’expérience
+                fractionnaires</strong> pour étudier plusieurs facteurs avec un nombre
+                d’essais limité.
+              </li>
+              <li>
+                Le protocole reste perfectible (peu de joueurs, nombre d’essais restreint,
+                contraintes de terrain), et certaines variables non contrôlées
+                (qualité réelle des surfaces, précision de la passe) peuvent influencer les
+                résultats.
+              </li>
+            </ul>
+
+            <h2 class="section-title">Compétences mises en avant</h2>
+            <ul class="edu-list">
+              <li>Conception et mise en œuvre d’un plan d’expérience 2<sup>k‑p</sup>.</li>
+              <li>Analyse de variance et interprétation d’effets principaux.</li>
+              <li>Traitement de données vidéo et extraction de variables de performance.</li>
+              <li>Modélisation statistique sous R et restitution des résultats.</li>
+            </ul>
+          </div>
+
+          <aside class="project-side">
+            <div class="project-side-card">
+              <h3>Détails du projet</h3>
+              <p class="project-side-meta">Année : 2023‑2024</p>
+              <p class="project-side-meta">Contexte : Projet de plan d’expérience</p>
+              <p class="project-side-meta">Support : présentation type diaporama</p>
+            </div>
+            <div class="project-side-card">
+              <h3>Télécharger le diaporama</h3>
+              <p class="project-side-meta">
+                Version PDF du diaporama <em>« Modélisation de données complexe. Plan
+                d'expérience »</em>.
+              </p>
+              <p class="project-side-meta">
+                <a
+                  href="Modélisation de données complexe. Plan d'expérience..pdf"
+                  download
+                  class="btn btn-outline project-btn"
+                  >Télécharger le PDF</a
+                >
+              </p>
+            </div>
+            <div class="project-side-card">
+              <h3>Mots‑clés</h3>
+              <ul class="project-tags">
+                <li>Plan d’expérience</li>
+                <li>Modélisation</li>
+                <li>Statistiques</li>
+                <li>Effets & interactions</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Raphaël Peus – Data analyst / Data scientist</p>
+      </div>
+      <script>
+        const yearSpan = document.getElementById("year");
+        if (yearSpan) {
+          yearSpan.textContent = new Date().getFullYear();
+        }
+      </script>
+    </footer>
+  </body>
+</html>
+
+

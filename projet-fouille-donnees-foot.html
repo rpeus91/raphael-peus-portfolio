@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fouille de données – Joueurs des 5 grands championnats</title>
+    <meta
+      name="description"
+      content="Projet de fouille de données sur les joueurs de football des 5 grands championnats européens (saison 2019-2020)."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <span class="brand-name">Raphaël Peus</span>
+          <span class="brand-tagline">Data analyst / Data scientist</span>
+        </div>
+        <nav class="main-nav">
+          <a href="index.html#projects">← Retour aux projets</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero project-hero">
+        <div class="container">
+          <p class="hero-kicker">Projet – Fouille de données</p>
+          <h1>Profilage de joueurs des 5 grands championnats européens</h1>
+          <p class="section-intro">
+            Projet réalisé dans le cadre du Master Sciences et numérique du sport (DIGISPORT,
+            Université Rennes 2) sur un jeu de données décrivant les performances de joueurs
+            de football (saison 2019‑2020) évoluant dans les cinq grands championnats
+            européens.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container project-layout">
+          <div class="project-main">
+            <h2 class="section-title">Objectif du projet</h2>
+            <p>
+              L’objectif était de <strong>regrouper les joueurs en profils de performance</strong>
+              à partir de leurs statistiques de match (buts, passes décisives, tirs, dribbles,
+              fautes subies, évaluations, etc.), puis de
+              <strong>décrire les caractéristiques principales de chaque groupe</strong>.
+            </p>
+            <p>
+              Le projet visait aussi à mettre en relation ces profils avec
+              <strong>le club</strong> et <strong>le poste</strong> des joueurs, afin de mieux
+              comprendre comment les styles de jeu se répartissent entre équipes et positions.
+            </p>
+
+            <h2 class="section-title">Problématiques</h2>
+            <p>Le projet s’articule autour de trois questions principales :</p>
+            <ol class="edu-list" style="list-style-type: decimal; padding-left: 1.5rem;">
+              <li>
+                Comment les performances des joueurs varient-elles en fonction de leur position
+                principale sur le terrain ?
+              </li>
+              <li>
+                Comment les performances des joueurs varient-elles d’un club à l’autre, d’un
+                championnat à l’autre ? Existe-t-il des caractéristiques spécifiques aux clubs qui
+                influencent les performances individuelles des joueurs ?
+              </li>
+              <li>Comment les performances des joueurs diffèrent-elles en fonction de leur âge ?</li>
+            </ol>
+
+            <h2 class="section-title">Données utilisées</h2>
+            <ul class="edu-list">
+              <li>Joueurs des 5 grands championnats européens, saison 2019‑2020.</li>
+              <li>
+                Variables de performance : buts, passes décisives, tirs par match, passes clés,
+                dribbles réussis, fautes subies, note globale, apparitions, temps de jeu, âge.
+              </li>
+              <li>Informations contextuelles : club et position principale sur le terrain.</li>
+            </ul>
+
+            <h2 class="section-title">Méthodologie</h2>
+            <ul class="edu-list">
+              <li>
+                <strong>Pré‑traitement</strong> : sélection des variables quantitatives,
+                transformation du temps de jeu en heures, standardisation des données.
+              </li>
+              <li>
+                <strong>Analyse en composantes principales (ACP)</strong> pour explorer la
+                structure des données et identifier les axes majeurs de variation
+                (contribution offensive, temps de jeu, etc.).
+              </li>
+              <li>
+                <strong>Classification hiérarchique</strong> et
+                <strong>méthode des K‑means</strong> pour construire des groupes de joueurs et
+                comparer différents découpages.
+              </li>
+              <li>
+                Analyses complémentaires par <strong>club</strong>, <strong>poste</strong> et
+                <strong>tranches d’âge</strong> (jeunes vs vétérans) pour affiner
+                l’interprétation des profils.
+              </li>
+            </ul>
+
+            <h2 class="section-title">Résultats principaux</h2>
+            <ul class="edu-list">
+              <li>
+                L’ACP montre que les deux premiers axes expliquent environ
+                <strong>50&nbsp;% de la variabilité totale</strong>, avec un premier axe lié à
+                la contribution offensive (buts, tirs par match, passes clés, passes
+                décisives, note globale) et un second axe davantage associé au
+                <strong>temps de jeu et aux apparitions</strong>.
+              </li>
+            </ul>
+
+            <ul class="edu-list">
+              <li>
+                Sur le cercle de corrélation, l’âge est positivement corrélé aux variables
+                de performance offensive (buts, tirs, passes clés), tandis que
+                <strong>Apps</strong> et <strong>Heure</strong> sont peu corrélées aux autres
+                indicateurs. Les dribbles (<strong>Drb</strong>) et les fautes subies
+                (<strong>Fouled</strong>) sont fortement corrélés, ce qui confirme qu’un
+                joueur qui dribble beaucoup subit en moyenne plus de fautes.
+              </li>
+            </ul>
+            <figure class="project-figure">
+              <img
+                src="ACP.png"
+                alt="Cercle de corrélation des variables de performance des joueurs"
+              />
+              <figcaption>
+                Figure&nbsp;1 – Cercle de corrélation des variables de performance (buts, passes, tirs, dribbles, etc.).
+              </figcaption>
+            </figure>
+
+            <ul class="edu-list">
+              <li>
+                L’analyse factorielle des individus met en évidence quelques profils
+                extrêmes : par exemple <strong>Messi</strong> et <strong>Neymar</strong>, qui
+                se distinguent nettement par leurs statistiques offensives malgré des temps
+                de jeu différents, à l’opposé de profils comme <strong>Ndidi</strong> qui
+                présentent des valeurs offensives beaucoup plus faibles.
+              </li>
+            </ul>
+            <figure class="project-figure">
+              <img
+                src="plan_facto_individus.png"
+                alt="Plan factoriel des individus montrant les profils extrêmes des joueurs"
+              />
+              <figcaption>
+                Figure&nbsp;2 – Plan factoriel des individus : représentation des joueurs dans l'espace des deux premières composantes principales.
+              </figcaption>
+            </figure>
+
+            <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.75rem; color: var(--accent);">
+              Réponse à la problématique 1
+            </h3>
+            <p>
+              L’analyse des performances en fonction de la position principale des joueurs n’a pas
+              révélé de résultats significatifs. Aucun comportement différent n’a pu être identifié
+              entre les différents postes sur le terrain à partir des variables de performance
+              analysées.
+            </p>
+
+            <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.75rem; color: var(--accent);">
+              Réponse à la problématique 2
+            </h3>
+            <p>
+              Les classifications (CAH puis K‑means) permettent d’identifier des
+              <strong>groupes de clubs aux comportements proches</strong> : par exemple,
+              certaines équipes se distinguent par un volume important de dribbles et de
+              fautes subies (Wolverhampton, Real Betis), d’autres par leur efficacité
+              devant le but malgré moins de tirs (Sassuolo), ou encore par un très grand
+              nombre de passes et de passes clés (Manchester City).
+            </p>
+
+            <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.75rem; color: var(--accent);">
+              Réponse à la problématique 3
+            </h3>
+            <p>
+              L’étude par tranches d’âge (<strong>jeunes vs vétérans</strong>) montre que
+              les vétérans ont en moyenne plus de temps de jeu, tirent davantage et
+              marquent plus de buts, tandis que certains jeunes présentent des profils
+              plus créatifs sur les passes et les passes clés malgré un temps de jeu plus
+              limité.
+            </p>
+
+            <h2 class="section-title">Compétences mises en avant</h2>
+            <ul class="edu-list">
+              <li>Pré‑traitement et standardisation de données de performance sportive.</li>
+              <li>Analyse exploratoire multivariée (ACP) et interprétation des axes.</li>
+              <li>Implémentation et comparaison de méthodes de classification (CAH, K‑means).</li>
+              <li>
+                Vulgarisation des résultats pour un public non spécialiste (entraîneurs,
+                staff sportif).
+              </li>
+            </ul>
+          </div>
+
+          <aside class="project-side">
+            <div class="project-side-card">
+              <h3>Détails du projet</h3>
+              <p class="project-side-meta">Année : 2023‑2024</p>
+              <p class="project-side-meta">Contexte : UE Fouille de données – Master DIGISPORT</p>
+              <p class="project-side-meta">Travail en groupe (3 étudiants)</p>
+            </div>
+            <div class="project-side-card">
+              <h3>Télécharger le rapport</h3>
+              <p class="project-side-meta">
+                Version complète du projet (PDF) incluant l’ensemble des analyses, figures et annexes.
+              </p>
+              <p class="project-side-meta">
+                <a
+                  href="Projet_Fouille_de_donne╠ües_Briere_Peus_Laperrousaz.pdf"
+                  download
+                  class="btn btn-outline project-btn"
+                  >Télécharger le PDF</a
+                >
+              </p>
+            </div>
+            <div class="project-side-card">
+              <h3>Mots‑clés</h3>
+              <ul class="project-tags">
+                <li>Fouille de données</li>
+                <li>Football</li>
+                <li>ACP</li>
+                <li>Classification</li>
+                <li>K‑means</li>
+                <li>CAH</li>
+              </ul>
+            </div>
+            <!-- On pourra ajouter un lien de téléchargement vers le PDF plus tard -->
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Raphaël Peus – Data analyst / Data scientist</p>
+      </div>
+      <script>
+        const yearSpan = document.getElementById("year");
+        if (yearSpan) {
+          yearSpan.textContent = new Date().getFullYear();
+        }
+      </script>
+    </footer>
+  </body>
+</html>
+
+

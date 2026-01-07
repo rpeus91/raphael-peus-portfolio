@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mémoire M2 – Annotation automatique markerless au 110 mètres haies</title>
+    <meta
+      name="description"
+      content="Mémoire de recherche M2 : développement d’un outil d’annotation automatique basé sur l’estimation de pose humaine (HPE) pour l’analyse des performances en 110 mètres haies."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <span class="brand-name">Raphaël Peus</span>
+          <span class="brand-tagline">Data analyst / Data scientist</span>
+        </div>
+        <nav class="main-nav">
+          <a href="index.html#projects">← Retour aux projets</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero project-hero">
+        <div class="container">
+          <p class="hero-kicker">Mémoire de recherche M2</p>
+          <h1>Annotation automatique markerless de la performance au 110 mètres haies</h1>
+          <p class="section-intro">
+            Vers une approche fondée sur l’estimation de pose humaine – Développement de l’outil CITRUS
+            pour automatiser l’analyse vidéo des courses de 110 mètres haies en utilisant les techniques
+            de vision par ordinateur.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container project-layout">
+          <div class="project-main">
+            <h2 class="section-title">Contexte & objectifs</h2>
+            <p>
+              Ce mémoire de recherche a été réalisé dans le cadre d’un <strong>stage à l’IRISA (Institut
+              de Recherche en Informatique et Systèmes Aléatoires)</strong> en collaboration avec la
+              <strong>Fédération Française d’Athlétisme (FFA)</strong>. L’objectif principal était de
+              développer une solution automatisée d’annotation vidéo pour l’analyse des performances
+              en 110 mètres haies, en utilisant les techniques d’<strong>estimation de pose humaine
+              (HPE)</strong>.
+            </p>
+            <p>
+              Actuellement, la FFA utilise des outils d’annotation manuelle comme <strong>Méta-vidéo</strong>
+              ou <strong>Kinovea</strong>, qui présentent deux limites majeures : elles sont chronophages
+              et sujettes à une variabilité inter-observateur. L’introduction de systèmes automatisés
+              fondés sur les HPE permettrait d’accélérer le processus tout en standardisant les mesures,
+              apportant ainsi un gain d’objectivité et d’efficacité.
+            </p>
+            <p>
+              L’objectif était d’évaluer la pertinence et les limites des approches fondées sur la HPE
+              dans un cadre exigeant, et de concevoir un outil capable d’identifier automatiquement des
+              instants clés (impulsions, réceptions, franchissements) à partir de vidéos de compétition
+              ou d’entraînement.
+            </p>
+
+            <h2 class="section-title">Revue de littérature</h2>
+            <p>
+              L’<strong>estimation de la pose humaine (HPE)</strong> est un domaine clé de la vision par
+              ordinateur et de la capture de mouvement sans marqueurs, visant à détecter et localiser les
+              différentes parties du corps humain pour reconstruire une représentation squelettique à
+              partir d’images ou de vidéos. Cette technologie génère un pseudo-squelette, composé de points
+              clés ou keypoints (KP) représentant les articulations principales.
+            </p>
+            <p>
+              Les HPE 2D, utilisés dans ce projet, consistent à détecter les points clés du corps humain
+              dans un plan, en s’appuyant principalement sur des réseaux de neurones convolutifs (CNN).
+              Plusieurs modèles ont été développés au fil des années : <strong>DeepPose</strong> (2014),
+              <strong>OpenPose</strong> (2017), <strong>MediaPipe</strong> (2019), <strong>YoloPose</strong>
+              (2022), <strong>RTMPose</strong> (2023), et <strong>ViTPose</strong> (2022) qui a popularisé
+              l’utilisation des transformers.
+            </p>
+            <p>
+              L’intégration des HPE dans le domaine sportif est relativement récente. En athlétisme, les
+              HPE connaissent un essor particulier, avec plusieurs travaux récents portant sur l’annotation
+              automatique des phases techniques dans des disciplines telles que le saut en longueur ou le
+              triple saut. Dans le cas spécifique du 110 mètres haies, deux recherches ont été menées,
+              montrant de bons résultats avec OpenPose et YoloPose.
+            </p>
+            <p>
+              Cependant, les modèles HPE présentent encore des limites : difficultés face aux occultations,
+              postures non correctement reconnues (notamment dans les starting-blocks), et biais liés à la
+              répartition inégale des caractéristiques dans les datasets d’entraînement.
+            </p>
+
+            <h2 class="section-title">Problématique</h2>
+            <p>
+              L’analyse de la performance sportive a connu une transformation significative grâce à l’essor
+              de l’intelligence artificielle et plus particulièrement par l’intégration des HPE dans l’analyse
+              vidéo. Plusieurs études ont démontré l’efficacité de ces technologies dans des disciplines
+              telles que le tennis ou le saut en longueur.
+            </p>
+            <p>
+              En revanche, les épreuves techniques comme le 110 mètres haies restent peu explorées dans la
+              littérature, alors même que la nature rapide et répétitive des franchissements, associée à des
+              variations posturales importantes, complique considérablement l’analyse.
+            </p>
+            <p>
+              La question centrale qui émerge est : <strong>"Les technologies d’estimation de la pose
+              humaine sont-elles adaptées à l’automatisation de l’analyse des courses de 110 m haies ?"</strong>
+            </p>
+            <p>
+              L’objectif était d’évaluer la pertinence et les limites des approches fondées sur la HPE dans
+              un cadre aussi exigeant, et de concevoir un outil capable d’identifier automatiquement des
+              instants clés à partir de vidéos de compétition. Une attention particulière était portée à la
+              comparaison entre les résultats issus de cette détection automatique et ceux obtenus par
+              annotation manuelle, afin de juger de la fiabilité du système.
+            </p>
+
+            <h2 class="section-title">Méthodologie</h2>
+            <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.75rem; color: var(--accent);">
+              Sélection de l’HPE candidate
+            </h3>
+            <p>
+              Après avoir étudié la littérature sur les HPE, la première étape a consisté à tester plusieurs
+              modèles (<strong>OpenPose</strong>, <strong>YoloPose</strong>, <strong>MediaPipe Pose</strong>
+              et <strong>RTMPose</strong>) sur les vidéos fournies par la FFA. Ces vidéos peuvent être
+              regroupées en deux catégories : les vidéos single-person (entraînements) et les vidéos
+              multi-person (compétitions).
+            </p>
+            <p>
+              Les tests ont mis en évidence plusieurs problématiques spécifiques : difficultés de détection
+              lors des franchissements de haies, superpositions entre athlètes, bruits parasites, distance
+              caméra-athlètes, positions accroupies dans les starting-blocks mal détectées, robustesse face
+              à la qualité de la vidéo, et temps de traitement.
+            </p>
+            <p>
+              <strong>RTMPose</strong> s’est distingué par les meilleurs résultats globaux : bonne robustesse
+              face à la distance, gestion relativement bonne des occultations, résistance au flou, détection
+              plus précise dans les starting-blocks, et temps de traitement satisfaisant. RTMPose a donc été
+              sélectionné comme solution HPE candidate.
+            </p>
+
+            <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.75rem; color: var(--accent);">
+              Développement de l'outil CITRUS
+            </h3>
+            <p>
+              L'outil développé, nommé <strong>CITRUS</strong> (automatiC annotatIon Tool foR hUrdle raceS),
+              comprend plusieurs étapes :
+            </p>
+            <ul class="edu-list">
+              <li>
+                <strong>Nettoyage des données</strong> : identification des hurdlers uniquement, élimination
+                des éléments parasites (spectateurs, juges) via un filtrage basé sur le score de confiance
+                et un algorithme de sélection des individus détectés de manière continue.
+                <div class="process-flow" style="margin: 1.25rem 0 0;">
+                  <div class="process-step">
+                    <h4 style="margin-bottom: 0.75rem; color: var(--accent); font-size: 0.95rem;">
+                      Vidéo avant nettoyage
+                    </h4>
+                    <video controls>
+                      <source src="vidéo_pré_traitement.mp4" type="video/mp4" />
+                      Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                  </div>
+                  <div class="process-arrow">→</div>
+                  <div class="process-step">
+                    <h4 style="margin-bottom: 0.75rem; color: var(--accent); font-size: 0.95rem;">
+                      Vidéo après nettoyage (CITRUS)
+                    </h4>
+                    <video controls>
+                      <source src="Vidéo_type_traitée_mémoireM2.mp4" type="video/mp4" />
+                      Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <strong>Collecte des trajectoires</strong> : sélection des points clés les plus pertinents
+                (orteils) pour analyser leurs trajectoires et identifier les phases clés du franchissement.
+              </li>
+              <li>
+                <strong>Traitement des données</strong> : lissage des courbes avec le filtre de Savitzky-Golay,
+                détection automatique des franchissements de haies, identification du pied d'attaque, détection
+                des impulsions et réceptions.
+              </li>
+              <li>
+                <strong>Calcul des métriques</strong> : extraction automatique du temps de vol, du temps de
+                course entre chaque haie, et de l'intervalle entre chaque haie.
+              </li>
+            </ul>
+            <p>
+              Le processus complet de traitement est illustré ci-dessous : à partir d'une vidéo d'entrée,
+              CITRUS extrait les trajectoires des points clés (orteils) pour générer des courbes permettant
+              d'identifier automatiquement les événements clés (impulsions, réceptions, franchissements),
+              puis calcule les métriques de performance.
+            </p>
+            <div class="process-flow">
+              <div class="process-step">
+                <h4 style="margin-bottom: 0.75rem; color: var(--accent); font-size: 0.95rem;">
+                  Vidéo d'entrée
+                </h4>
+                <video controls>
+                  <source src="Vidéo_type_mémoireM2.mp4" type="video/mp4" />
+                  Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
+              </div>
+              <div class="process-arrow">→</div>
+              <div class="process-step">
+                <h4 style="margin-bottom: 0.75rem; color: var(--accent); font-size: 0.95rem;">
+                  Vidéo traitée
+                </h4>
+                <video controls>
+                  <source src="Vidéo_type_traitée_mémoireM2.mp4" type="video/mp4" />
+                  Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
+              </div>
+              <div class="process-arrow">→</div>
+              <div class="process-step">
+                <h4 style="margin-bottom: 0.75rem; color: var(--accent); font-size: 0.95rem;">
+                  Analyse des trajectoires
+                </h4>
+                <img
+                  src="Mémoire M2 résultat_courbe.png"
+                  alt="Courbe de trajectoire des orteils"
+                />
+              </div>
+              <div class="process-arrow">→</div>
+              <div class="process-step">
+                <h4 style="margin-bottom: 0.75rem; color: var(--accent); font-size: 0.95rem;">
+                  Résultats finaux
+                </h4>
+                <img
+                  src="Mémoire M2 exemple_résultat.png"
+                  alt="Résultats finaux générés par CITRUS"
+                />
+              </div>
+            </div>
+
+            <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.75rem; color: var(--accent);">
+              Protocole expérimental
+            </h3>
+            <p>
+              L’évaluation de la précision de CITRUS a été réalisée en comparant les résultats générés
+              automatiquement à ceux obtenus par la méthode manuelle de référence (<strong>Méta-vidéo</strong>).
+              Le jeu de données comprenait 6 vidéos d’entraînement de 110 m haies (configuration single-person,
+              30 Hz), pour la plupart fournies par la FFA.
+            </p>
+            <p>
+              Chaque vidéo a été analysée de deux manières : automatiquement via CITRUS et manuellement avec
+              Méta-vidéo. Les indicateurs de performance retenus étaient l’écart entre les métriques générées
+              par CITRUS et celles de la vérité terrain, ainsi que le temps de traitement de chaque vidéo.
+            </p>
+
+            <h2 class="section-title">Résultats principaux</h2>
+            <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.75rem; color: var(--accent);">
+              Précision des métriques
+            </h3>
+            <p>
+              Les métriques obtenues par CITRUS sont très encourageantes pour une première version. Les
+              écarts moyens entre CITRUS et Méta-vidéo sont évalués entre <strong>0,016 et 0,035 secondes</strong>
+              selon les vidéos et les métriques analysées.
+            </p>
+            <p>
+              Pour les impulsions et réceptions, les différences moyennes varient entre 0,023 et 0,038 secondes.
+              Pour les temps de vol, les écarts moyens sont de l'ordre de 0,018 à 0,032 secondes. Pour les
+              temps de course et les intervalles, les différences moyennes sont généralement inférieures à
+              0,03 secondes.
+            </p>
+            <p>
+              L'exemple ci-dessous illustre les résultats finaux générés automatiquement par CITRUS à partir
+              d'une vidéo d'entrée : les métriques sont extraites et organisées dans un format exploitable,
+              avec les temps d'impulsion, de réception, les temps de vol, de course et les intervalles entre
+              chaque haie.
+            </p>
+            <figure class="project-figure">
+              <img
+                src="Mémoire M2 exemple_résultat.png"
+                alt="Exemple de résultats finaux générés par CITRUS : métriques extraites automatiquement"
+              />
+              <figcaption>
+                Figure&nbsp;2 – Exemple de résultats finaux générés par CITRUS : extraction automatique des
+                métriques de performance (temps d'impulsion, réception, temps de vol, temps de course, intervalles).
+              </figcaption>
+            </figure>
+            <p>
+              Il est important de rappeler que ces résultats ont été obtenus à partir de vidéos enregistrées
+              à <strong>30 Hz</strong>. L'utilisation de vidéos à 100 Hz ou plus permettrait de réduire
+              significativement la différence de résultats entre les deux outils. Selon les indications de la
+              FFA, l'objectif est d'atteindre une erreur inférieure à 0,01 seconde pour envisager l'intégration
+              de CITRUS dans leurs outils.
+            </p>
+
+            <h3 style="font-size: 1.2rem; margin: 1.5rem 0 0.75rem; color: var(--accent);">
+              Gain de temps de traitement
+            </h3>
+            <p>
+              Le gain de temps de traitement est significatif : pour chaque vidéo, un gain allant de
+              <strong>3 minutes 20 à 4 minutes 46</strong> a été observé, ce qui correspond en moyenne à
+              environ <strong>77,5% de gain de temps</strong> en passant de l’annotation manuelle à
+              l’annotation automatique.
+            </p>
+            <p>
+              L’outil pourrait ainsi permettre à l’entraîneur d’accéder aux métriques de la course seulement
+              2 à 3 minutes après celle-ci, ce qui représente un gain considérable par rapport aux méthodes
+              actuelles. Dans le cadre d’un traitement sur plusieurs vidéos, cela représenterait un gain de
+              temps conséquent, permettant aux entraîneurs de fournir un retour à leurs athlètes de manière
+              beaucoup plus rapide.
+            </p>
+
+            <h2 class="section-title">Discussion & perspectives</h2>
+            <p>
+              À notre connaissance, le modèle développé dans le cadre de cette étude est le premier à permettre
+              l’annotation automatique des phases clés d’une course de 110 mètres haies. La méthode proposée
+              représenterait ainsi une avancée significative pour l’analyse de la performance en course de
+              haies en France, tout en ouvrant la voie à une application plus large de la vision par ordinateur
+              dans d’autres disciplines de l’athlétisme.
+            </p>
+            <p>
+              Les limites actuelles de l’outil résident dans le fait qu’il n’est, pour l’instant, pleinement
+              opérationnel que dans un contexte d’entraînement, avec un seul athlète présent sur la piste.
+              Sur des vidéos de compétition, les HPE rencontrent encore des difficultés, notamment en présence
+              d’occultations ou lorsque les athlètes sont éloignés de la caméra.
+            </p>
+            <p>
+              Des pistes d’amélioration sont envisagées :
+            </p>
+            <ul class="edu-list">
+              <li>
+                Utilisation de vidéos à haute fréquence (100 Hz ou plus) pour améliorer la précision des
+                mesures.
+              </li>
+              <li>
+                Combinaison de plusieurs modèles HPE afin de compenser les faiblesses spécifiques à chacun.
+              </li>
+              <li>
+                Réentraînement du modèle HPE sélectionné à partir d’un jeu de données contenant des images
+                spécifiques au 110 mètres haies, afin d’améliorer la détection des squelettes dans les postures
+                typiques du départ et du franchissement.
+              </li>
+              <li>
+                Développement de nouvelles métriques jusqu’ici non analysées, comme l’analyse fine des 13,72
+                premiers mètres (du départ jusqu’à la première haie) ou la détection du moment où l’athlète
+                remonte la tête.
+              </li>
+            </ul>
+            <p>
+              L’objectif à moyen terme est que CITRUS soit progressivement capable de fonctionner dans des
+              contextes de plus en plus complexes, jusqu’à pouvoir analyser des vidéos de compétition, avec
+              un athlète par couloir.
+            </p>
+
+            <h2 class="section-title">Compétences mises en avant</h2>
+            <ul class="edu-list">
+              <li>Développement d’outils d’annotation automatique basés sur la vision par ordinateur.</li>
+              <li>Maîtrise des techniques d’estimation de pose humaine (HPE) et comparaison de modèles.</li>
+              <li>Traitement et analyse de données vidéo (filtrage, détection d’événements, extraction de métriques).</li>
+              <li>Développement d’algorithmes de détection automatique d’événements sportifs.</li>
+              <li>Rédaction scientifique et revue de littérature approfondie.</li>
+              <li>Collaboration avec des chercheurs (IRISA) et des entraîneurs (FFA).</li>
+              <li>Évaluation de la précision et de la fiabilité d’outils automatisés.</li>
+              <li>Programmation Python, traitement d’images, analyse de séquences vidéo.</li>
+            </ul>
+          </div>
+
+          <aside class="project-side">
+            <div class="project-side-card">
+              <h3>Détails du mémoire</h3>
+              <p class="project-side-meta">Année : 2024‑2025 (M2)</p>
+              <p class="project-side-meta">Organisme : IRISA / FFA</p>
+              <p class="project-side-meta">Encadrant : Laurent Guillo</p>
+              <p class="project-side-meta">Tuteur universitaire : Françoise Rannou-Bekono</p>
+              <p class="project-side-meta">Type : Stage + Mémoire de recherche</p>
+            </div>
+            <div class="project-side-card">
+              <h3>Télécharger le mémoire</h3>
+              <p class="project-side-meta">
+                Version complète du mémoire de recherche M2 (PDF).
+              </p>
+              <p class="project-side-meta">
+                <a
+                  href="Mémoire M2 Raphael Peus  (6).pdf"
+                  download
+                  class="btn btn-outline project-btn"
+                  >Télécharger le PDF</a
+                >
+              </p>
+            </div>
+            <div class="project-side-card">
+              <h3>Résultats clés</h3>
+              <ul class="project-tags" style="list-style: none; padding-left: 0;">
+                <li>✓ Gain de temps : 77,5%</li>
+                <li>✓ Précision : 0,016-0,035 s</li>
+                <li>✓ Outil : CITRUS</li>
+                <li>✓ Modèle HPE : RTMPose</li>
+              </ul>
+            </div>
+            <div class="project-side-card">
+              <h3>Mots‑clés</h3>
+              <ul class="project-tags">
+                <li>Human Pose Estimation</li>
+                <li>Vision par ordinateur</li>
+                <li>Annotation automatique</li>
+                <li>110 mètres haies</li>
+                <li>RTMPose</li>
+                <li>CITRUS</li>
+                <li>Analyse vidéo</li>
+                <li>Deep learning</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Raphaël Peus – Data analyst / Data scientist</p>
+      </div>
+      <script>
+        const yearSpan = document.getElementById("year");
+        if (yearSpan) {
+          yearSpan.textContent = new Date().getFullYear();
+        }
+      </script>
+    </footer>
+  </body>
+</html>
+
