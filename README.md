@@ -4,7 +4,7 @@ Portfolio personnel de Raphaël Peus - Data analyst / Data scientist spécialis�
 
 ## 🔗 Voir le site
 
-👉 **[Accéder au portfolio](https://rpeus91.github.io/raphael-peus-portfolio/code/index.html)**
+👉 **[Accéder au portfolio](https://rpeus91.github.io/raphael-peus-portfolio/src/index.html)**
 
 ## Technologies utilisées
 
@@ -15,12 +15,13 @@ Portfolio personnel de Raphaël Peus - Data analyst / Data scientist spécialis�
 ## Structure
 
 ```
-├── code/
+├── src/
 │   ├── index.html          # Page d'accueil
 │   ├── styles.css          # Feuille de style principale
 │   └── projet-*.html       # Pages détaillées des projets
-├── images/                 # Images du portfolio
-├── Documents_pdf/          # Documents PDF téléchargeables
-└── vidéo/                  # Vidéos des projets
+├── assets/
+│   ├── images/             # Images du portfolio
+│   └── videos/             # Vidéos des projets
+└── docs/                   # Documents PDF téléchargeables
 ```
 
